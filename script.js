@@ -41,8 +41,9 @@ class Deck {
 
   draw() {
     return this.cards.pop()
-    }
   }
+
+ }
  
 class GameOfWar {
   constructor() {
@@ -51,8 +52,6 @@ class GameOfWar {
     this.pile = []
     //this.warPile = []
     this.gameSetUp()
-  
-
   }
   gameSetUp() {
     const deck = new Deck()
@@ -62,25 +61,29 @@ class GameOfWar {
   }
   playersDrawCards() {
     //both players draw their cards from arrays somehow
-   // this.player1.draw()
-   // this.player2.draw()
+    this.player2.draw()
+    this.player1.draw()
+    
     //push drawn cards into this.pile = []
-   // if (this.pile[0] < this.pile[1]) {
-   //   this.player1.push(cards)
-   /* } elseif  {
-      this.player2.push(cards)
-    }  else if (this.ranks.pile[0] === this.ranks.pile[1]){
-      player1 draw() 3 cards in this.warPile = []
-      player2 draw() 3 cards in this.warPile = []
-      player 1 draw() 1 card in this.pile = []
-      player 2 draw() 1 card in this.pile = []
-    } else if(this.pile[0] < this.pile[1]) {
-     player1.push(warPile.length)}
-      else if {
-      player2.push(warPile.length)
-    */ }
-    } 
-  
+
+    if (pile[0].ranks < pile[1].ranks) {
+        player1.push(cards)
+     } else if (pile[0].ranks > pile[1].ranks) {
+         player2.push(cards)
+   } else if (pile[0].ranks === pile[1].ranks) {
+      // player1 draw() 3 cards in this.warPile = []
+      //  player2 draw() 3 cards in this.warPile = []
+      // player 1 draw() 1 card in this.pile = []
+      // player 2 draw() 1 card in this.pile = []
+   // } else if (this.pile[0] < this.pile[1]) {
+    // player1.push(warPile.length)}
+     // else if {
+        // player2.push(warPile.length)
+      }
+    }
+} 
+    
+
 
 
 
@@ -98,12 +101,12 @@ shuffleDeck.shuffle()
 console.log(shuffleDeck)
 
 let myDeck = new Deck()
-// myDeck.createDeck()
-// console.log(myDeck)
+ myDeck.createDeck()
+ //console.log(myDeck)
  let game = new GameOfWar()
-console.log(game)
 
 console.log(gamblerDeck.draw())
+
 
 
 
@@ -112,8 +115,8 @@ console.log(gamblerDeck.draw())
 
 //   //Create cards and suits DONE
 // //Deal Cards between 2 players DONE
-// //Player 1 draw
-// //Player 2 draw
+// //Player 1 draw in progress
+// //Player 2 draw in progress
 // //one of three results will happen
 //     //player1 draws higher card
 //       //player1 takes both cards
