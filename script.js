@@ -1,117 +1,136 @@
 class Card {
-  constructor(suit, rank, score){
-    this.suit = suit
-    this.rank = rank
-    this.score = score
+  constructor(suit, rank, score) {
+    this.suit = suit;
+    this.rank = rank;
+    this.score = score;
   }
 }
 
 class Deck {
   constructor() {
-    this.cards = []
-    this.createDeck()
-    this.shuffle()
+    this.cards = [];
+    this.createDeck();
+    this.shuffle();
   }
 
   createDeck() {
     let suits = ["Heart", "Spade", "Club", "Diamond"];
-    let rank = ["2", "3", "4", "5", "6", "7", "8", "9", "10", "Jack", "Queen", "King", "Ace"];
+    let rank = [
+      "2",
+      "3",
+      "4",
+      "5",
+      "6",
+      "7",
+      "8",
+      "9",
+      "10",
+      "Jack",
+      "Queen",
+      "King",
+      "Ace",
+    ];
 
     for (let i = 0; i < suits.length; i++) {
       for (let j = 0; j < rank.length; j++) {
-        this.cards.push(new Card(suits[i], rank[j], j + 2))
+        this.cards.push(new Card(suits[i], rank[j], j + 2));
       }
     }
 
-    return this.cards
+    return this.cards;
   }
 
   shuffle() {
-    let currentIndex = this.cards.length, randomIndex;
-  
+    let currentIndex = this.cards.length,
+      randomIndex;
+
     while (currentIndex != 0) {
       randomIndex = Math.floor(Math.random() * currentIndex);
       currentIndex--;
-  
+
       [this.cards[currentIndex], this.cards[randomIndex]] = [
-        this.cards[randomIndex], this.cards[currentIndex]];
+        this.cards[randomIndex],
+        this.cards[currentIndex],
+      ];
     }
     return this.cards;
   }
 
   draw() {
-    return this.cards.pop()
+    return this.cards.pop();
   }
+}
 
- }
- 
 class GameOfWar {
   constructor() {
-    this.player1 = []
-    this.player2 = []
-    this.pile = []
-    //this.warPile = []
-    this.gameSetUp()
+    this.player1 = [];
+    this.player2 = [];
+    this.warPile = [];
+    this.gameSetUp();
   }
+
   gameSetUp() {
-    const deck = new Deck()
-    let cards = deck.cards
-    this.player1.push(...cards.slice(0, cards.length / 2))
-    this.player2.push(...cards.slice(cards.length / 2))
+    const deck = new Deck();
+    let cards = deck.cards;
+    this.player1.push(...cards.slice(0, cards.length / 2));
+    this.player2.push(...cards.slice(cards.length / 2));
   }
-  playersDrawCards() {
-    //both players draw their cards from arrays somehow
-    this.player2.draw()
-    this.player1.draw()
-    
-    //push drawn cards into this.pile = []
 
-    if (pile[0].ranks < pile[1].ranks) {
-        player1.push(cards)
-     } else if (pile[0].ranks > pile[1].ranks) {
-         player2.push(cards)
-   } else if (pile[0].ranks === pile[1].ranks) {
-      // player1 draw() 3 cards in this.warPile = []
-      //  player2 draw() 3 cards in this.warPile = []
-      // player 1 draw() 1 card in this.pile = []
-      // player 2 draw() 1 card in this.pile = []
-   // } else if (this.pile[0] < this.pile[1]) {
-    // player1.push(warPile.length)}
-     // else if {
-        // player2.push(warPile.length)
+  startGame() {
+    //while (this.player1.length > 0 && this.player2.length > 0) {
+    let p1Card = this.player1.pop();
+    let p2Card = this.player2.pop();
+    console.log(`P1 Card: ${p1Card.score}, P2 Card: ${p2Card.score}`);
+    console.log(`p1 Cards: ${this.player1.length}`);
+      if (p1Card.score < p2Card.score) {
+        this.player2.unshift(p2Card, p1Card)/*, ...pile */
+        //this.warPile.length = 0;
+      } else if (p1Card.score > p2Card.score) {
+        this.player1.unshift(p1Card, p2Card);
+        console.log(`p1 Cards after win: ${this.player1.length}`);
+      } else if (p1Card.score === p2Card.score) {
+       
+        this.war();
       }
-    }
-} 
+    // }
     
+  }
 
+  war() {
+    while (this.player1.length > 0 && this.player2.length > 0) {
+      this.player1.pop();
+      this.player2.pop();
+      if (p1card.score < p2.score) {
+        this.player2.unshift(p1card, p2card),
+          
+          this.warPile.length = 0;
+      }
+      //if not more than 4 cards, write something in if/else statement
+    }
+     // player1 draw() 3 cards in this.warPile = []
+        //  player2 draw() 3 cards in this.warPile = []
+        // player 1 draw() 1 card in this.pile = []
+        // player 2 draw() 1 card in this.pile = []
+        // } else if (this.pile[0] < this.pile[1]) {
+        // player1.push(warPile.length)}
+        // else if {
+        // player2.push(warPile.length)
+  }
+}
 
+let gamblerDeck = new Deck();
+//console.log(gamblerDeck)
 
+let shuffleDeck = new Deck();
+shuffleDeck.shuffle();
+//console.log(shuffleDeck)
 
-  
-  
-
-  
-
-
-let gamblerDeck = new Deck()
-console.log(gamblerDeck)
-
-let shuffleDeck = new Deck()
-shuffleDeck.shuffle()
-console.log(shuffleDeck)
-
-let myDeck = new Deck()
- myDeck.createDeck()
- //console.log(myDeck)
- let game = new GameOfWar()
-
-console.log(gamblerDeck.draw())
-
-
-
-
-
- 
+let myDeck = new Deck();
+myDeck.createDeck();
+//console.log(myDeck)
+let game = new GameOfWar();
+console.log(game.startGame());
+//console.log(gamblerDeck.draw())
 
 //   //Create cards and suits DONE
 // //Deal Cards between 2 players DONE
@@ -134,7 +153,3 @@ console.log(gamblerDeck.draw())
 //   //when player has all cards - game finished
 //     //if player does not have enough cards to finish, other
 //     //player wins
-
-  
-
-
