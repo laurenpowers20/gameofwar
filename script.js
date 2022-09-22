@@ -7,19 +7,19 @@ class Card {
 }
 
 class Deck {
-  constructor(){
+  constructor() {
     this.cards = []
     this.createDeck()
     this.shuffle()
   }
 
-  createDeck(){
+  createDeck() {
     let suits = ["Heart", "Spade", "Club", "Diamond"];
-    let ranks = ["2", "3", "4", "5", "6", "7", "8", "9", "10", "Jack", "Queen", "King", "Ace"];
+    let rank = ["2", "3", "4", "5", "6", "7", "8", "9", "10", "Jack", "Queen", "King", "Ace"];
 
-    for(let i = 0; i < suits.length; i++){
-      for(let j = 0; j < ranks.length; j++){
-        this.cards.push(new Card(suits[i], ranks[j], j + 2))
+    for (let i = 0; i < suits.length; i++) {
+      for (let j = 0; j < rank.length; j++) {
+        this.cards.push(new Card(suits[i], rank[j], j + 2))
       }
     }
 
@@ -27,7 +27,7 @@ class Deck {
   }
 
   shuffle() {
-    let currentIndex = this.cards.length,  randomIndex;
+    let currentIndex = this.cards.length, randomIndex;
   
     while (currentIndex != 0) {
       randomIndex = Math.floor(Math.random() * currentIndex);
@@ -39,10 +39,56 @@ class Deck {
     return this.cards;
   }
 
-  draw(){
+  draw() {
     return this.cards.pop()
+    }
   }
-}
+ 
+class GameOfWar {
+  constructor() {
+    this.player1 = []
+    this.player2 = []
+    this.pile = []
+    //this.warPile = []
+    this.gameSetUp()
+  
+
+  }
+  gameSetUp() {
+    const deck = new Deck()
+    let cards = deck.cards
+    this.player1.push(...cards.slice(0, cards.length / 2))
+    this.player2.push(...cards.slice(cards.length / 2))
+  }
+  playersDrawCards() {
+    //both players draw their cards from arrays somehow
+   // this.player1.draw()
+   // this.player2.draw()
+    //push drawn cards into this.pile = []
+   // if (this.pile[0] < this.pile[1]) {
+   //   this.player1.push(cards)
+   /* } elseif  {
+      this.player2.push(cards)
+    }  else if (this.ranks.pile[0] === this.ranks.pile[1]){
+      player1 draw() 3 cards in this.warPile = []
+      player2 draw() 3 cards in this.warPile = []
+      player 1 draw() 1 card in this.pile = []
+      player 2 draw() 1 card in this.pile = []
+    } else if(this.pile[0] < this.pile[1]) {
+     player1.push(warPile.length)}
+      else if {
+      player2.push(warPile.length)
+    */ }
+    } 
+  
+
+
+
+  
+  
+
+  
+
 
 let gamblerDeck = new Deck()
 console.log(gamblerDeck)
@@ -54,160 +100,18 @@ console.log(shuffleDeck)
 let myDeck = new Deck()
 // myDeck.createDeck()
 // console.log(myDeck)
-
- 
- class GameOfWar {
-  constructor() {
-  this.player1 = []
-  this.player2 = []
-    //this.pile = []
-     this.gameSetUp()
-   }
-   gameSetUp() {
-    const deck = new Deck()
-    let cards = deck.cards
-    //Split the deck for each player
-    this.player1.push(...cards.slice(0, cards.length / 2))
-    this.player2.push(...cards.slice(cards.length / 2))
-  }
- }
  let game = new GameOfWar()
- console.log(game)
+console.log(game)
+
+console.log(gamblerDeck.draw())
 
 
 
-
-
-
-// class Card {
-//   constructor(suit, rank, score) {
-//     this.suit = suit
-//     this.rank = rank
-//     this.score = score
-//   }
- 
-// }
-
-// let aceOfSpades = new Card("Spade", "Ace", "14")
-// console.log(aceOfSpades)
-
-// class Deck {
-//   constructor() {
-//     this.cards = []
-//     this.createDeck()
-//   }
-//   createDeck() {
-//     let suits = ["hearts", "clubs", "spades", "diamonds"]
-//     let ranks = ["2", "3", "4", "5", "6"]
-
-//     for (let i = 0; i < suits.length; i++) {
-//       for (let j = 0; ranks.length; j++) {
-//         this.cards.push(new Card(suits[i], ranks[j], j + 2))
-//       }
-//     }
-//     return this.cards
-//   }
-//   shuffle() {
-//     class Card {
-//       constructor(suit, rank, score){
-//         this.suit = suit
-//         this.rank = rank
-//         this.score = score
-//       }
-//     }
-    
-//     class Deck {
-//       constructor(){
-//         this.cards = []
-//         this.createDeck()
-//       }
-    
-//       createDeck(){
-//         let suits = ["Heart", "Spade", "Club", "Diamond"];
-//         let ranks = ["2", "3", "4", "5", "6", "7", "8", "9", "10", "Jack", "Queen", "King", "Ace"];
-    
-//         for(let i = 0; i < suits.length; i++){
-//           for(let j = 0; j < ranks.length; j++){
-//             this.cards.push(new Card(suits[i], ranks[j], j + 2))
-//           }
-//         }
-    
-//         return this.cards
-//       }
-    
-//       shuffle() {
-//         let currentIndex = this.cards.length,  randomIndex;
-      
-//         while (currentIndex != 0) {
-//           randomIndex = Math.floor(Math.random() * currentIndex);
-//           currentIndex--;
-      
-//           [this.cards[currentIndex], this.cards[randomIndex]] = [
-//             this.cards[randomIndex], this.cards[currentIndex]];
-//         }
-      
-//         return this.cards;
-//       }
-    
-//       draw(){
-//         return this.cards.pop()
-//       }
-//     }
-    
-//     let gamblerDeck = new Deck()
-//     console.log(gamblerDeck)
-       
-//     } 
-//   }
-
-
-
-// let myDeck = new Deck()
-// myDeck.createDeck()
-// console.log(myDeck)
 
  
-// class GameOfWar {
-//   constructor() {
-//     this.player1 = []
-//     this.player2 = []
-//     this.pile = []
-//     this.gameSetUp()
-//   }
-//   gameSetUp() {
-//     const deck = new Deck()
-//     let cards = deck.cards
-//     //Split the deck for each player
-//     this.player1.push(...slice.cards.length / 2)
-//     this.player2.push(...slice.cards.length / 2)
-//     cards.slice(cards.length / 2)
-//   }
-// }
-// let game = new GameOfWar()
-// console.log(game)
 
-
-
-
-
-
-// // let cards = [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14];
-// // const shuffleArray = (array) => {
-// //   for (let i = array.length - 1; i > 0; i--) {
-// //     const j = Math.floor(Math.random() * (i + 1));
-// //     [array[i], array[j]] = [array[j], array[i]];
-// //   }
-// // }
-
-// // shuffleArray(cards)
-// // console.log(cards.slice())
-
-  
-
-
-
-//   //Create cards and suits
-// //Deal Cards between 2 players
+//   //Create cards and suits DONE
+// //Deal Cards between 2 players DONE
 // //Player 1 draw
 // //Player 2 draw
 // //one of three results will happen
