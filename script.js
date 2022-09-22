@@ -77,11 +77,11 @@ class GameOfWar {
   }
 
   startGame() {
-    //while (this.player1.length > 0 && this.player2.length > 0) {
+    while (this.player1.length > 0 && this.player2.length > 0) {
     let p1Card = this.player1.pop();
     let p2Card = this.player2.pop();
-    console.log(`P1 Card: ${p1Card.score}, P2 Card: ${p2Card.score}`);
-    console.log(`p1 Cards: ${this.player1.length}`);
+    //console.log(`P1 Card: ${p1Card.score}, P2 Card: ${p2Card.score}`);
+   // console.log(`p1 Cards: ${this.player1.length}`);
       if (p1Card.score < p2Card.score) {
         this.player2.unshift(p2Card, p1Card)/*, ...pile */
         //this.warPile.length = 0;
@@ -92,22 +92,36 @@ class GameOfWar {
        
         this.war();
       }
-    // }
+     }
     
   }
 
   war() {
-    while (this.player1.length > 0 && this.player2.length > 0) {
-      this.player1.pop();
-      this.player2.pop();
-      if (p1card.score < p2.score) {
-        this.player2.unshift(p1card, p2card),
-          
-          this.warPile.length = 0;
+    //while (this.player1.length > 0 && this.player2.length > 0) {
+    let p1WarPile = this.player1.slice(0, 3);
+    let p2WarPile = this.player2.slice(0, 3);
+    console.log(`P1 Card: ${p1WarPile}, P2 Card: ${p2WarPile}`);
+      
+  
+     if (p1card.score < p2card.score) {
+       this.player2.unshift(...p1card, ...p2card) 
+     } else if (p1card.score > p2.score) {
+         this.player1.unshift(...p1card, ...p2card)
+     }
+     else if (p1card.score === p2Card.score) {
+       while (this.player1.length > 0 && this.player2.length > 0) {
+         if (p1Card.score < p2Card.score) {
+           this.player2.unshift(...p2Card, ...p1Card)
+         } else if (p1Card.score > p2Card.score) {
+           this.player1.unshift(...p1Card, ...p2Card);
+         } else if (p1Card.score === p2Card.score) {
+         }
+
+  }
       }
-      //if not more than 4 cards, write something in if/else statement
     }
-     // player1 draw() 3 cards in this.warPile = []
+      
+     
         //  player2 draw() 3 cards in this.warPile = []
         // player 1 draw() 1 card in this.pile = []
         // player 2 draw() 1 card in this.pile = []
@@ -115,8 +129,8 @@ class GameOfWar {
         // player1.push(warPile.length)}
         // else if {
         // player2.push(warPile.length)
-  }
-}
+  
+
 
 let gamblerDeck = new Deck();
 //console.log(gamblerDeck)
