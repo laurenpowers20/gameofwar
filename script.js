@@ -80,12 +80,12 @@ class GameOfWar {
 
   startGame() {
     while (this.player1.length > 0 && this.player2.length > 0) {
-      //console.log('p1 length: ', this.player1.length)
-      //console.log('p2 length: ', this.player2.length )
+     // console.log('p1 length: ', this.player1.length)
+     // console.log('p2 length: ', this.player2.length )
       let p1Card = this.player1.pop();
       let p2Card = this.player2.pop();
-      // console.log(`P1 Card: ${p1Card.score}, P2 Card: ${p2Card.score}`);
-      //console.log(`p1 Cards: ${this.player1.length}`);
+      //console.log(`P1 Card: ${p1Card.score}, P2 Card: ${p2Card.score}`);
+      console.log(`p1 Cards: ${this.player1.length}`);
       if (p1Card.score < p2Card.score) {
         this.player2.unshift(p2Card, p1Card, ...this.warPile)
         this.warPile = []
@@ -98,7 +98,6 @@ class GameOfWar {
         this.war();
       }
     }
-  
   }
 
   war() {
@@ -107,18 +106,13 @@ class GameOfWar {
       let p1WarPile = this.player1.splice(this.player1.length - 3, 3);
       let p2WarPile = this.player2.splice(this.player2.length - 3, 3);
       this.warPile.push(...p1WarPile, ...p2WarPile)
-      // console.log(`P1 cards: ${p1WarPile}, P2 cards: ${p2WarPile}`);
+      //console.log(`P1 cards: ${p1WarPile}, P2 cards: ${p2WarPile}`);
       //do loop another loop? 
       this.startGame()
     } else if (this.player1.length < 4 && this.player2.length > 4) {
-      console.log("player 1 loses!")
-    } else if (this.player1.length > 4 && this.player2.length < 4) {
-      console.log("player 2 loses!")
-    }
-    else if (this.player1.length > 0) {
-      console.log("player 1 wins!")
-    } else {
-      console.log("player2 wins!")
+      //console.log("player 2 wins!")
+    } else if (this.player2.length < 4 && this.player2.length < 4) {
+     // console.log("player 1 wins!")
     }
   }
 }
